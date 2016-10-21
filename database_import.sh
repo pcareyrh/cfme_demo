@@ -5,7 +5,7 @@
 
 cd /repo
 echo "Starting download of latest Demo DB. This may take a few minutes"
-sudo wget -t 3 --progress=bar:force http://10.9.62.89/dumps/vmdb_production_latest.dump -O /repo/vmdb_production_latest.dump
+sudo wget -t 3 --progress=bar:force http://$DATABASE_URL/dumps/vmdb_production_latest.dump -O /repo/vmdb_production_latest.dump
 if [ $? -ne 0 ]; then
   echo "Database download failed. Exiting."
   exit $?
@@ -14,7 +14,7 @@ else
 fi
 
 echo "Starting download of Demo DB key"
-sudo wget http://10.9.62.89/dumps/v2_key -O /repo/v2_key
+sudo wget http://$DATABASE_URL/dumps/v2_key -O /repo/v2_key
 if [ $? -ne 0 ]; then
   echo "Database key download failed. Exiting."
   exit $?
