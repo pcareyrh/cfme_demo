@@ -1,8 +1,7 @@
 #!/bin/bash
 cd /repo
 echo "Starting download of latest Demo DB. This may take a few minutes"
-#sudo wget --progress=bar:force http://10.9.62.89/dumps/vmdb_production_latest.dump -O /repo/vmdb_production_latest.dump
-sudo wget -t 3 --progress=bar:force:noscroll http://10.33.1.49:8000/vmdb_production_latest.dump -O /repo/vmdb_production_latest.dump
+sudo wget -t 3 --progress=bar:force http://10.9.62.89/dumps/vmdb_production_latest.dump -O /repo/vmdb_production_latest.dump
 if [ $? -ne 0 ]; then
   echo "Database download failed. Exiting."
   exit $?

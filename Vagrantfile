@@ -6,30 +6,29 @@ VM_CPU = ENV['VM_CPU'] || 4
 # Amount of available RAM
 VM_MEMORY = ENV['VM_MEMORY'] || 6144
 # File to use as storage for second Virtualbox disk.
-vbox_second_disk = '/virtual_disks/cfdb.vdi'
+vbox_second_disk = '/$CF_SECOND_DISK/cfdb.vdi'
 
 Vagrant.configure(2) do |config|
 # Red Hat subscription details.
-  config.registration.username = "pcarey@redhat.com"
-  config.registration.password = "device$defy"
+  config.registration.username = "$USERNAME"
+  config.registration.password = "$PASSWORD"
   config.registration.auto_attach = false
-  config.registration.pools = "8a85f981568e999d01568ed2241a67c2"
+  config.registration.pools = "$POOL_ID"
   config.registration.unregister_on_halt = false
 
-  config.vm.box = "cfme-box-vbox"
-  config.vm.box_url = "http://127.0.0.1:8000/cfme_5.6.1.2_demo_vbox.box"
+  config.vm.box = "CFME-Demo"
+  config.vm.box_url = "http://$DEMOBUILDER/cfme_5.6.1.2_demo_vbox.box"
+#  config.vm.box_url = "http://$DEMOBUILDER/cfme_5.6.1.2_demo_libvirt.box"
   config.ssh.insert_key = false
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
   config.hostmanager.include_offline = true
   config.vm.synced_folder '.', '/vagrant', disabled: true
-#  config.vm.provision "file", source: "/home/pcarey/Downloads/cloudformsDatabase4.1.005.db", destination: "/home/vagrant/cloudformsDatabase4.1.005.db"
-#  config.vm.provision "file", source: "/home/pcarey/Downloads/v2_key", destination: "/home/vagrant/v2_key"
 
-  config.vm.define "cfme-demo" do |rhel|
+  config.vm.define "CFME-Demo" do |rhel|
     rhel.vm.hostname = "cloudforms.example.com"
-    rhel.vm.provision :shell, :path => "http://localhost:8000/short_post.sh"
-    rhel.vm.provision :shell, :path => "http://localhost:8000/database_import.sh"
+    rhel.vm.provision :shell, :path => "http://$DEMOBUILDER/post_config.sh"
+    rhel.vm.provision :shell, :path => "http://$DEMOBUILDER/database_import.sh"
       rhel.vm.provider "virtualbox" do |v, override|  
         v.memory = VM_MEMORY  
         v.cpus = VM_CPU  
