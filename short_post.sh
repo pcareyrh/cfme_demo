@@ -19,10 +19,10 @@ yum install -y yum-plugin-priorities wget yum-utils vim
 
 echo "Commencing Cloudforms initial setup."
 if [ -e /dev/sdb ]; then
-  echo "Setup Virtual Box"
+  echo "Setup Cloudforms for Virtual Box"
   appliance_console_cli --host=$(hostname) --region=10 --internal --password="smartvm" --key --force-key --dbdisk=/dev/sdb
 elif [ -e /dev/vdb ]; then
-  echo "Setup LibVirt"
+  echo "Setup Cloudforms for LibVirt"
   appliance_console_cli --host=$(hostname) --region=10 --internal --password="smartvm" --key --force-key --dbdisk=/dev/vdb
 fi
 echo "Completed Cloudforms initial setup."
