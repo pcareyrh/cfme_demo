@@ -1,6 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# Vagrant file to be used with CF Offline Demo.
+
 # Number of virtualized CPUs
 VM_CPU = ENV['VM_CPU'] || 4
 # Amount of available RAM

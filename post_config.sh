@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This script will perform initial configuration for a CF appliance.
+# Variables will determine the database disk based to use.
+
 localectl set-keymap us
 timedatectl set-timezone Europe/London
 timedatectl set-ntp true
@@ -24,6 +27,9 @@ if [ -e /dev/sdb ]; then
 elif [ -e /dev/vdb ]; then
   echo "Setup Cloudforms for LibVirt"
   appliance_console_cli --host=$(hostname) --region=10 --internal --password="smartvm" --key --force-key --dbdisk=/dev/vdb
+else
+  echo "No secondary disk found for database setup. Exiting."
+  exit 1
 fi
 echo "Completed Cloudforms initial setup."
 
