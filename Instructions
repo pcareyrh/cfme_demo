@@ -8,6 +8,8 @@
   * vagrant-libvirt (if using libvirt)
   * vagrant-registration
 
+2.5 Download Vagrantfile from Github.
+
 3. Update the variables in Vagrantfile used for subscription management:
   * USERNAME
   * PASSWORD
