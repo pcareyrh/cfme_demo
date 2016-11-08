@@ -2,6 +2,11 @@
 # vi: set ft=ruby :
 
 # Vagrant file to be used with CF Offline Demo.
+USERNAME = "Subscription_Username"
+PASSWORD = "Subscription_Password"
+POOL_ID = "Pool_ID"
+DOWNLOAD_URL = "10.39.166.29"
+
 
 # Number of virtualized CPUs
 VM_CPU = ENV['VM_CPU'] || 4
@@ -12,15 +17,15 @@ vbox_second_disk = '/$CF_SECOND_DISK/cfdb.vdi'
 
 Vagrant.configure(2) do |config|
 # Red Hat subscription details.
-  config.registration.username = "$USERNAME"
-  config.registration.password = "$PASSWORD"
+  config.registration.username = $USERNAME
+  config.registration.password = $PASSWORD
   config.registration.auto_attach = false
-  config.registration.pools = "$POOL_ID"
+  config.registration.pools = $POOL_ID
   config.registration.unregister_on_halt = false
 
   config.vm.box = "CFME-Demo"
-  config.vm.box_url = "http://$DEMOBUILDER/cfme_5.6.1.2_demo_vbox.box"
-#  config.vm.box_url = "http://$DEMOBUILDER/cfme_5.6.1.2_demo_libvirt.box"
+#  config.vm.box_url = "http://#{DOWNLOAD_URL}/cfme_latest_vbox.box"
+  config.vm.box_url = "http://#{DOWNLOAD_URL}/cfme_latest_libv.box"
   config.ssh.insert_key = false
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
@@ -29,8 +34,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "CFME-Demo" do |rhel|
     rhel.vm.hostname = "cloudforms.example.com"
-    rhel.vm.provision :shell, :path => "http://$DEMOBUILDER/post_config.sh"
-    rhel.vm.provision :shell, :path => "http://$DEMOBUILDER/database_import.sh"
+    rhel.vm.provision :shell, :path => "http://#{DOWNLOAD_URL}/post_config.sh"
+    rhel.vm.provision :shell, :path => "http://#{DOWNLOAD_URL}/database_import.sh"
       rhel.vm.provider "virtualbox" do |v, override|  
         v.memory = VM_MEMORY  
         v.cpus = VM_CPU  
