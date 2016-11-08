@@ -3,6 +3,7 @@
 # This script is designed to download and import a CF demo database
 # into a new CF appliance.
 DATABASE_URL="10.39.166.29"
+
 cd /repo
 echo "Starting download of latest Demo DB. This may take a few minutes"
 sudo wget -t 3 --progress=bar:force http://$DATABASE_URL/dumps/vmdb_production_latest.dump -O /repo/vmdb_production_latest.dump

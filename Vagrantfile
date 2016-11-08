@@ -7,7 +7,6 @@ PASSWORD = "Subscription_Password"
 POOL_ID = "Pool_ID"
 DOWNLOAD_URL = "10.39.166.29"
 
-
 # Number of virtualized CPUs
 VM_CPU = ENV['VM_CPU'] || 4
 # Amount of available RAM
@@ -26,6 +25,7 @@ Vagrant.configure(2) do |config|
   config.vm.box = "CFME-Demo"
 #  config.vm.box_url = "http://#{DOWNLOAD_URL}/cfme_latest_vbox.box"
   config.vm.box_url = "http://#{DOWNLOAD_URL}/cfme_latest_libv.box"
+
   config.ssh.insert_key = false
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
