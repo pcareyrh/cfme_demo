@@ -16,10 +16,10 @@ vbox_second_disk = '/$CF_SECOND_DISK/cfdb.vdi'
 
 Vagrant.configure(2) do |config|
 # Red Hat subscription details.
-  config.registration.username = $USERNAME
-  config.registration.password = $PASSWORD
+  config.registration.username = USERNAME
+  config.registration.password = PASSWORD
   config.registration.auto_attach = false
-  config.registration.pools = $POOL_ID
+  config.registration.pools = POOL_ID
   config.registration.unregister_on_halt = false
 
   config.vm.box = "CFME-Demo"
