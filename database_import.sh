@@ -3,6 +3,7 @@
 # This script is designed to download and import a CF demo database
 # into a new CF appliance.
 DATABASE_URL="10.39.166.29"
+CREDENTIALS_URL="10.39.166.29"
 
 cd /repo
 echo "Starting download of latest Demo DB. This may take a few minutes"
@@ -15,6 +16,7 @@ else
 fi
 
 echo "Starting download of Demo DB key"
+sudo wget http://$CREDENTIALS_URL/credentials.txt -O /home/vagrant/credentials.txt
 sudo wget http://$DATABASE_URL/dumps/v2_key -O /repo/v2_key
 if [ $? -ne 0 ]; then
   echo "Database key download failed. Exiting."
