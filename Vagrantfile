@@ -5,7 +5,7 @@
 USERNAME = "Subscription_Username"
 PASSWORD = "Subscription_Password"
 POOL_ID = "Pool_ID"
-DOWNLOAD_URL = "10.39.166.29"
+DOWNLOAD_URL = "10.9.62.89"
 
 # Number of virtualized CPUs
 VM_CPU = ENV['VM_CPU'] || 4
