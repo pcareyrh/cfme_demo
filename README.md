@@ -40,3 +40,37 @@ The default resource requirements for the demo are:
 * 40GB Primary disk
 * 20GB Secondary disk. (Demo database is approximately 17GB used when imported)
 
+# Instructions for use.
+
+1. Install and configure Vagrant locally.
+
+2. Add Vagrant Plugins:
+  * vagrant-env
+  * vagrant-hostmanager
+  * vagrant-libvirt (if using libvirt)
+  * vagrant-registration
+
+3. Download Vagrantfile from Github.
+
+4. Update the variables in Vagrantfile used for subscription management:
+  * USERNAME
+  * PASSWORD
+  * POOL_ID
+  * 'vbox_second_disk' (if using Virtual Box)
+
+5. Ensure storage pool requirements are met
+  * 60GB
+
+6. Connect to the VPN/Internal Network.
+
+7. Move Vagrantfile to your working directory.
+
+8. vagrant up!
+
+9. Installation from scratch takes approximately 20 minutes.
+
+10. Login to the console:
+  * User: root OR vagrant
+  * Password: vagrant
+
+11. Collect CloudForms login from /home/vagrant/credentials.txt
